@@ -1,0 +1,51 @@
+﻿@using DataLibrary
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="padding-top:10px;padding-bottom:10px">Upload A CSV File</div>
+    <br />
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group" style="padding-top:10px;padding-bottom:10px">
+            <input type="file" id="dataFile" name="uploadedFile" />
+        </div>
+        <br />
+        <div class="form-group" style="padding-top:10px;padding-bottom:10px">
+            <input type="submit" value="Upload" class="btn btn-default" />
+        </div>
+    }
+
+    @if (Model.Count > 0)
+    {
+        <hr />
+        <table width="100%" border="1">
+            <tr>
+                <th>Email_Address</th>
+                <th>First_Name</th>
+                <th>Last_Name</th>
+            </tr>
+            @foreach (Table1 u in Model)
+            {
+                <tr>
+                    <td>@u.EmailAddress</td>
+                    <td>@u.FirstName</td>
+                    <td>@u.LastName</td>
+                </tr>
+            }
+        </table>
+    }
+
+</body>
+</html>
+
+
